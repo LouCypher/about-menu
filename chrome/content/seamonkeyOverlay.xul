@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+    This Source Code Form is subject to the terms of the Mozilla Public
+    License, v. 2.0. If a copy of the MPL was not distributed with this
+    file, You can obtain one at http://mozilla.org/MPL/2.0/.
+-->
+
+<overlay id="aboutAbout-overlay"
+      xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+  <script type="application/x-javascript" src="aboutAbout.js"/>
+
+  <menupopup id="helpPopup">
+    <menu id="helpPopup_aboutAboutMenu"
+          insertafter="aboutName"
+          label="About:">
+      <menupopup id="helpPopup_aboutAboutMenupopup"
+                 oncommand="switchToTabHavingURI(event.target.label, true);"
+                 onclick="AboutAbout.middleClickHandler(event);"
+                 onpopupshowing="AboutAbout.populate(this);"/>
+    </menu>
+  </menupopup>
+
+</overlay>
