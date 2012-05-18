@@ -4,30 +4,24 @@
   <Description about="urn:mozilla:install-manifest">
     <em:id>AboutMenu@LouCypher</em:id>
     <em:type>2</em:type>
+    <!--em:unpack>true</em:unpack-->
     <em:name>About: Menu</em:name>
-    <em:version>0.2a2012051701</em:version>
-    <em:description>
-      Adds About: menu into Help menu to access about: pages.
-    </em:description>
+    <em:version>0.2a2012051901</em:version>
+    <em:description>Adds About: menu into Help menu to access about: pages.</em:description>
     <em:creator>LouCypher</em:creator>
     <em:homepageURL>https://github.com/LouCypher/about-menu</em:homepageURL>
     <em:localized>
       <Description>
         <em:locale>en-US</em:locale>
         <em:name>About: Menu</em:name>
-        <em:description>
-          Adds About: menu into Help menu to access about: pages.
-        </em:description>
+        <em:description>Adds About: menu into Help menu to access about: pages.</em:description>
       </Description>
     </em:localized>
     <em:localized>
       <Description>
         <em:locale>id</em:locale>
         <em:name>Menu About:</em:name>
-        <em:description>
-          Menambahkan menu About: pada menu Bantuan
- untuk mengakses laman about:
-        </em:description>
+        <em:description>Menambahkan menu About: pada menu Bantuan untuk mengakses laman about:</em:description>
       </Description>
     </em:localized>
     <em:targetApplication>
