@@ -7,9 +7,9 @@ const chrm = "chrome://aboutmenu/content/";
 
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 
-function AboutPasteToTab() {}
+function AboutProtocol() {}
 
-AboutPasteToTab.prototype = {
+AboutProtocol.prototype = {
   classDescription: desc,
   contractID: "@mozilla.org/network/protocol/about;1?what=" + name,
   classID: Components.ID(uuid),
@@ -28,4 +28,4 @@ AboutPasteToTab.prototype = {
   }
 }
 
-const NSGetFactory = XPCOMUtils.generateNSGetFactory([AboutPasteToTab]);
+const NSGetFactory = XPCOMUtils.generateNSGetFactory([AboutProtocol]);
