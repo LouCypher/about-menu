@@ -6,7 +6,7 @@
 
 var AboutAbout = {
 
-  _XULNS: "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul",
+  XULNS: "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul",
 
   makeXML: function aboutAbout_makeXML(aXMLObject) {
     var res = null;
@@ -29,17 +29,26 @@ var AboutAbout = {
     if ((Application.id == "{3550f703-e582-4d05-9a08-453d09bdfdc6}") ||
         aEvent.button != 1) return;
     aEvent.preventDefault();
-    gBrowser.selectedTab = gBrowser.addTab(aEvent.target.label);
+    if ("gBrowser" in window) {
+      gBrowser.selectedTab = gBrowser.addTab(aEvent.target.label);
+    } else { // SeaMonkey Mail, Composer & Address Book
+      openAsExternal(aEvent.target.label);
+    }
     closeMenus(aEvent.target);
   },
 
   addMenuItem: function aboutAbout_addMenuItem(aNode, aLabel) {
-    aNode.appendChild(this.makeXML(<menuitem xmlns={this._XULNS}
+    aNode.appendChild(this.makeXML(<menuitem xmlns={this.XULNS}
                                              label={aLabel}/>));
   },
 
   populate: function aboutAbout_populate(aNode) {
+    const Cc = Components.classes, Ci = Components.interfaces;
+    const nsIAboutModule = Ci.nsIAboutModule;
+    
     while (aNode.lastChild) aNode.removeChild(aNode.lastChild);
+
+    // http://mxr.mozilla.org/mozilla-central/source/toolkit/content/aboutAbout.xhtml
     var protocols = [];
     var ios = Cc["@mozilla.org/network/io-service;1"].
               getService(Ci.nsIIOService);
@@ -49,10 +58,10 @@ var AboutAbout = {
         let aboutType = res[1];
         let contract = "@mozilla.org/network/protocol/about;1?what=" + aboutType;
         try {
-          let am = Cc[contract].getService(Ci.nsIAboutModule);
+          let am = Cc[contract].getService(nsIAboutModule);
           let uri = ios.newURI("about:" + aboutType, null, null);
           let flags = am.getURIFlags(uri);
-          if (!(flags & Ci.nsIAboutModule.HIDE_FROM_ABOUTABOUT)) {
+          if (!(flags & nsIAboutModule.HIDE_FROM_ABOUTABOUT)) {
             protocols.push(aboutType);
           }
         } catch (e) {
@@ -63,9 +72,9 @@ var AboutAbout = {
     }
 
     if (protocols.length > 20) {
-      var hbox  = aNode.appendChild(this.makeXML(<hbox xmlns={this._XULNS}/>));
-      var vbox1 = hbox.appendChild(this.makeXML(<vbox xmlns={this._XULNS}/>));
-      var vbox2 = hbox.appendChild(this.makeXML(<vbox xmlns={this._XULNS}/>));
+      var hbox  = aNode.appendChild(this.makeXML(<hbox xmlns={this.XULNS}/>));
+      var vbox1 = hbox.appendChild(this.makeXML(<vbox xmlns={this.XULNS}/>));
+      var vbox2 = hbox.appendChild(this.makeXML(<vbox xmlns={this.XULNS}/>));
       protocols.sort().forEach(function(aProtocol) {
         let vbox = (aProtocol <= protocols[parseInt(protocols.length / 2)])
                     ? vbox1 : vbox2;
