@@ -4,11 +4,12 @@
  *  file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-var AboutAbout = {
+var AboutMenu = {
 
   XULNS: "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul",
 
-  makeXML: function aboutAbout_makeXML(aXMLObject) {
+  makeXML: function aboutMenu_makeXML(aXMLObject) {
+  // http://custombuttons.hg.sourceforge.net/hgweb/custombuttons/custombuttons/file/1152f3e1be9a/chrome/custombuttons/content/custombuttons/overlay.js#l1044
     var res = null;
     var oldPrettyPrinting = XML.prettyPrinting;
     XML.prettyPrinting = false;
@@ -25,7 +26,7 @@ var AboutAbout = {
     return res;
   },
 
-  middleClickHandler: function aboutAbout_middleClickHandler(aEvent) {
+  middleClickHandler: function aboutMenu_middleClickHandler(aEvent) {
     if ((Application.id == "{3550f703-e582-4d05-9a08-453d09bdfdc6}") ||
         aEvent.button != 1) return;
     aEvent.preventDefault();
@@ -37,12 +38,12 @@ var AboutAbout = {
     closeMenus(aEvent.target);
   },
 
-  addMenuItem: function aboutAbout_addMenuItem(aNode, aLabel) {
+  addMenuItem: function aboutMenu_addMenuItem(aNode, aLabel) {
     aNode.appendChild(this.makeXML(<menuitem xmlns={this.XULNS}
                                              label={aLabel}/>));
   },
 
-  populate: function aboutAbout_populate(aNode) {
+  populate: function aboutMenu_populate(aNode) {
     const Cc = Components.classes, Ci = Components.interfaces;
     const nsIAboutModule = Ci.nsIAboutModule;
     
@@ -76,13 +77,14 @@ var AboutAbout = {
       var vbox1 = hbox.appendChild(this.makeXML(<vbox xmlns={this.XULNS}/>));
       var vbox2 = hbox.appendChild(this.makeXML(<vbox xmlns={this.XULNS}/>));
       protocols.sort().forEach(function(aProtocol) {
-        let vbox = (aProtocol <= protocols[parseInt(protocols.length / 2)])
+        let num = parseInt(protocols.length / 2);
+        let vbox = (aProtocol < protocols[parseInt(protocols.length / 2)])
                     ? vbox1 : vbox2;
-        AboutAbout.addMenuItem(vbox, "about:" + aProtocol);
+        AboutMenu.addMenuItem(vbox, "about:" + aProtocol);
       })
     } else {
       protocols.sort().forEach(function(aProtocol) {
-        AboutAbout.addMenuItem(aNode, "about:" + aProtocol);
+        AboutMenu.addMenuItem(aNode, "about:" + aProtocol);
       })
     }
   }

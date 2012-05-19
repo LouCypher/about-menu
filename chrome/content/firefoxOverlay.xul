@@ -5,10 +5,10 @@
     file, You can obtain one at http://mozilla.org/MPL/2.0/.
 -->
 
-<overlay id="aboutAbout-overlay"
+<overlay id="aboutMenu-overlay"
       xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-  <script type="application/x-javascript" src="aboutAbout.js"/>
+  <script type="application/x-javascript" src="aboutMenu.js"/>
 
   <menupopup id="appmenu_helpMenupopup">
     <menu id="appmenu_helpMenupopup_aboutAboutMenu"
@@ -16,8 +16,8 @@
           label="About:">
       <menupopup id="appmenu_helpMenupopup_aboutAboutMenupopup"
                  oncommand="switchToTabHavingURI(event.target.label, true);"
-                 onclick="AboutAbout.middleClickHandler(event);"
-                 onpopupshowing="AboutAbout.populate(this);"/>
+                 onclick="AboutMenu.middleClickHandler(event);"
+                 onpopupshowing="AboutMenu.populate(this);"/>
     </menu>
   </menupopup>
 
@@ -27,8 +27,8 @@
           label="About:">
       <menupopup id="menu_HelpPopup_aboutAboutMenupopup"
                  oncommand="switchToTabHavingURI(event.target.label, true);"
-                 onclick="AboutAbout.middleClickHandler(event);"
-                 onpopupshowing="AboutAbout.populate(this);"/>
+                 onclick="AboutMenu.middleClickHandler(event);"
+                 onpopupshowing="AboutMenu.populate(this);"/>
     </menu>
   </menupopup>
 
