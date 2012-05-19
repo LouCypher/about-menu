@@ -15,7 +15,7 @@
           insertafter="aboutName"
           label="About:">
       <menupopup id="menu_HelpPopup_aboutAboutMenupopup"
-                 oncommand="openContentTab(event.target.label);"
+                 oncommand="openContentTab(event.target.label, 'tab', '^about:');"
                  onpopupshowing="AboutMenu.populate(this);"/>
     </menu>
   </menupopup>

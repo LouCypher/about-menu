@@ -6,7 +6,7 @@
     <em:type>2</em:type>
     <!--em:unpack>true</em:unpack-->
     <em:name>About: Menu</em:name>
-    <em:version>0.3a2012051901</em:version>
+    <em:version>0.3a2012051904</em:version>
     <em:description>Adds About: menu into Help menu to access about: pages.</em:description>
     <em:creator>LouCypher</em:creator>
     <em:homepageURL>https://github.com/LouCypher/about-menu</em:homepageURL>
