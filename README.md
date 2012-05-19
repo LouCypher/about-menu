@@ -10,5 +10,5 @@ Firefox extension that adds 'About:' menu into 'Help' menu to access about: page
 * Thunderbird 9.0 - 12.*
 
 ## Installation
-* [Latest release](https://addons.mozilla.org/addon/aboutmenu/)
-
+* [Latest release](https://addons.mozilla.org/addon/aboutmenu/?src=external-home)
+* [Latest build](https://github.com/downloads/LouCypher/about-menu/aboutmenu.xpi)
