@@ -49,5 +49,12 @@
         <em:maxVersion>12.*</em:maxVersion>
       </Description>
     </em:targetApplication>
+    <em:targetApplication>
+      <Description><!-- Songbird -->
+        <em:id>songbird@songbirdnest.com</em:id>
+        <em:minVersion>1.10</em:minVersion>
+        <em:maxVersion>1.10.*</em:maxVersion>
+      </Description>
+    </em:targetApplication>
   </Description>
 </RDF>
