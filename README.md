@@ -11,5 +11,5 @@ Firefox extension that adds 'About:' menu into 'Help' menu to access about: page
 * Songbird 12.*
 
 ## Installation
-* [Latest release](https://addons.mozilla.org/addon/aboutmenu/?src=external-home)
-* [Latest builds](/LouCypher/about-menu/downloads)
+* [Stable release](https://addons.mozilla.org/addon/aboutmenu/?src=external-repo)
+* [Latest builds](https://dl.dropbox.com/u/120550/extensions/aboutmenu-0.3.xpi)
