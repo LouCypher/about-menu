@@ -8,22 +8,9 @@ var AboutMenu = {
 
   XULNS: "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul",
 
-  makeXML: function aboutMenu_makeXML(aXMLObject) {
-  // http://custombuttons.hg.sourceforge.net/hgweb/custombuttons/custombuttons/file/1152f3e1be9a/chrome/custombuttons/content/custombuttons/overlay.js#l1044
-    var res = null;
-    var oldPrettyPrinting = XML.prettyPrinting;
-    XML.prettyPrinting = false;
-    try {
-      if (typeof aXMLObject == "string") {
-        aXMLObject = new XML(aXMLObject);
-      }
-      res = (new DOMParser).parseFromString(aXMLObject.toXMLString(),
-                                            "application/xml")
-                           .documentElement;
-    } catch (e) {
-    }
-    XML.prettyPrinting = oldPrettyPrinting;
-    return res;
+  makeXML: function aboutMenu_makeXML(aXMLString) {
+    return (new DOMParser).parseFromString(aXMLString, "application/xml")
+                          .documentElement;
   },
 
   middleClickHandler: function aboutMenu_middleClickHandler(aEvent) {
@@ -39,8 +26,10 @@ var AboutMenu = {
   },
 
   addMenuItem: function aboutMenu_addMenuItem(aNode, aLabel) {
-    aNode.appendChild(this.makeXML(<menuitem xmlns={this.XULNS}
-                                             label={aLabel}/>));
+    /*aNode.appendChild(this.makeXML('<menuitem xmlns="' + this.XULNS + '"' +
+                                     ' label="' + aLabel + '"/>'));*/
+    var m = aNode.appendChild(document.createElement("menuitem"));
+    m.setAttribute("label", aLabel);
   },
 
   populate: function aboutMenu_populate(aNode) {
@@ -72,10 +61,10 @@ var AboutMenu = {
       }
     }
 
-    if (protocols.length > 20) {
-      var hbox  = aNode.appendChild(this.makeXML(<hbox xmlns={this.XULNS}/>));
-      var vbox1 = hbox.appendChild(this.makeXML(<vbox xmlns={this.XULNS}/>));
-      var vbox2 = hbox.appendChild(this.makeXML(<vbox xmlns={this.XULNS}/>));
+    if ((protocols.length > 20) && /Win/.test(navigator.platform)) {
+      var hbox  = aNode.appendChild(this.makeXML('<hbox xmlns="' + this.XULNS + '"/>'));
+      var vbox1 = hbox.appendChild(this.makeXML('<vbox xmlns="' + this.XULNS + '"/>'));
+      var vbox2 = hbox.appendChild(this.makeXML('<vbox xmlns="' + this.XULNS + '"/>'));
       protocols.sort().forEach(function(aProtocol) {
         let num = parseInt(protocols.length / 2);
         let vbox = (aProtocol < protocols[parseInt(protocols.length / 2)])
